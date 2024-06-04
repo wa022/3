@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Display Google Sheets Data</title>
+<style>
+  .field-container {
+    margin-bottom: 20px;
+  }
+  .field-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .field-container input[type="text"],
+  .field-container textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  .field-container button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="field-container">
+  <label for="name">Name:</label>
+  <input type="text" id="name" readonly>
+  <button onclick="editField('name')">Edit</button>
+  <button id="nameUpdateButton" style="display: none;" onclick="updateField('name')">Update</button>
+</div>
+
+<div class="field-container">
+  <label for="whoAmI">Who Am I:</label>
+  <textarea id="whoAmI" rows="10" cols="30" readonly></textarea>
+  <button onclick="editField('whoAmI')">Edit</button>
+  <button id="whoAmIUpdateButton" style="display: none;" onclick="updateField('whoAmI')">Update</button>
+</div>
+
+<div class="field-container">
+  <label for="socialFacebook">Facebook:</label>
+  <input type="text" id="socialFacebook" readonly>
+  <button onclick="editField('socialFacebook')">Edit</button>
+  <button id="socialFacebookUpdateButton" style="display: none;" onclick="updateField('socialFacebook')">Update</button>
+</div>
+
+<div class="field-container">
+  <label for="socialInstagram">Instagram:</label>
+  <input type="text" id="socialInstagram" readonly>
+  <button onclick="editField('socialInstagram')">Edit</button>
+  <button id="socialInstagramUpdateButton" style="display: none;" onclick="updateField('socialInstagram')">Update</button>
+</div>
+
+<div class="field-container">
+  <label for="email">Email:</label>
+  <input type="text" id="email" readonly>
+  <button onclick="editField('email')">Edit</button>
+  <button id="emailUpdateButton" style="display: none;" onclick="updateField('email')">Update</button>
+</div>
+
+<script>
+function editField(fieldId) {
+  document.getElementById(fieldId).readOnly = false;
+  document.getElementById(fieldId).focus();
+  document.getElementById(fieldId).select();
+  document.getElementById(fieldId + 'UpdateButton').style.display = 'inline';
+  document.getElementById(fieldId + 'EditButton').style.display = 'none';
+}
+
+function updateField(fieldId) {
+  document.getElementById(fieldId).readOnly = true;
+  document.getElementById(fieldId + 'UpdateButton').style.display = 'none';
+  document.getElementById(fieldId + 'EditButton').style.display = 'inline';
+}
+
+fetch('https://sheets.googleapis.com/v4/spreadsheets/1zuUB3TzYNgWFfSSBs7ySAQX-EVGhdlqBDEIFhiBCBLk/values/info!A1:I100?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU')
+  .then(response => response.json())
+  .then(data => {
+    const values = data.values;
+
+    // Fill the output fields with the retrieved data
+    document.getElementById('name').value = values[1][0] || '';
+    document.getElementById('whoAmI').value = values[2][0] || '';
+    document.getElementById('socialFacebook').value = values[2][3] || '';
+    document.getElementById('socialInstagram').value = values[2][4] || '';
+    document.getElementById('email').value = values[5][2] || '';
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+</script>
+
+</body>
+</html>
