@@ -23,7 +23,8 @@
             flex-wrap: wrap;
             width: 100%;
             margin-top: 20px;
-            overflow: hidden;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
         .container img {
             width: 100%;
@@ -35,6 +36,10 @@
         .content {
             padding: 20px;
             flex: 1;
+            box-sizing: border-box;
+            background: white;
+            border-radius: 20px;
+}
         }
         .content h1 {
             margin: 0 0 10px;
@@ -52,7 +57,7 @@
             line-height: 1.6;
         }
         .social-section {
-            margin-top: 20px;
+            margin-top: 5px;
         }
         
         .social-icons {
@@ -67,47 +72,23 @@
             margin-left: 5px;
         }
 
-        @media (max-width: 1200px) {
-            .container {
-                width: 100%;
-                margin: 0 auto;
-            }
-            .content h2 {
-                text-align: right;
-            }
-             .social-icons {
-                justify-content: right;
-            }
-        }
-        @media (max-width: 992px) {
-            .container {
-                width: 100%;
-                margin: 0 auto;
-            }
-            .content h2 {
-                text-align: right;
-            }
-             .social-icons {
-                justify-content: right;
-            }
-        }
         @media (max-width: 768px) {
             body {
                 text-align: center;
             }
             .container {
                 flex-direction: column;
-                max-width: 100%;
+                padding: 0 10px;
             }
             .content {
                 text-align: center;
+                padding: 10px;
             }
             .content h2 {
                 text-align: center;
             }
             
-            
-            .social-section{
+            .social-section {
                 text-align: center;
             }
             .social-icons {
@@ -162,7 +143,7 @@
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 140px;
+           top: 96px;
             left: 0;
             right: 0;
             background-color: #fff;
@@ -181,11 +162,6 @@
             background-image: url('https://wa022.github.io/2028/menu.png');
             background-size: cover;
         }
-
-
-       
-
-
 
         @media screen and (max-width: 576px) {
             header {
@@ -236,6 +212,56 @@
             border-top: 1px solid #ddd;
             margin-top: 20px;
         }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            height: 100px;
+        }
+        .form-group button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffb100;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #e09e00;
+        }
+        @media (max-width: 768px) {
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+            }
+        }
+        @media (max-width: 576px) {
+            .form-group label {
+                text-align: center;
+            }
+        }
+        
+       
+        
+        
+        
     </style>
 </head>
 <body>
@@ -243,53 +269,52 @@
         <div class="menu-icon" onclick="toggleMenu()"></div>
         <img src="https://wa022.github.io/reviewwithoumaima/logoB.png" alt="شعار" class="logo">
         <nav>
-           <a href="/3/index.html" class="nav-a">الرئيسية</a>
-            <a href="/3/about.html" class="nav-a">من أنا</a>
-            <a href="/3/contact.html" class="nav-a">للتواصل معي</a>
+            <a href="#" class="nav-a">الرئيسية</a>
+            <a href="#" class="nav-a">من أنا</a>
+            <a href="#" class="nav-a">للتواصل معي</a>
         </nav>
     </header>
 
     <!-- المحتوى الآخر يأتي هنا -->
     <div class="container">
-
-<img style="width: 50px;height: auto;margin-top: 20px;" src="https://wa022.github.io/reviewwithoumaima/logoB.png" alt="شعار" class="logoc" >
-
-<div class="content">
-           
-           
-           <form id="contact-form">
-            <div class="form-group">
-                <label for="name">الاسم:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">البريد الإلكتروني:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">الرسالة:</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit">إرسال</button>
-            </div>
-        </form>
-   
-
-            
-            <div class="social-section">
-                
+        
+        
+          <div class="social-section">
                 <div class="social-icons">
                     <a href="https://www.instagram.com/oumaima.elmamouny" target="_blank">
-                      
                         <img src="https://img.icons8.com/ios-filled/24/000000/instagram.png" alt="إنستغرام">
                     </a>
                     <a href="https://www.facebook.com/oumaima.elmamouny" target="_blank">
-                       
                         <img src="https://img.icons8.com/ios-filled/24/000000/facebook.png" alt="فيسبوك">
                     </a>
                 </div>
             </div>
+        
+        <img style="width: 30%;height: 100%;margin-top:0px;" src="https://wa022.github.io/reviewwithoumaima/logoB.png" alt="شعار" class="logoc">
+        
+        
+        
+        
+        <div class="content">
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">الاسم:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">الرسالة:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">إرسال</button>
+                </div>
+            </form>
+          
+          
         </div>
     </div>
 
