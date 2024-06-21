@@ -133,10 +133,11 @@
             padding: 20px;
             display: flex;
             align-items: center;
+            border-radius: 0 0 0 20px;
         }
 
         .logo {
-            width: 100px;
+            width: 70px;
             height: auto;
             margin-left: 10%;
             margin-right: 5%;
@@ -163,14 +164,14 @@
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 140px;
+            top: 78px;
             left: 0;
             right: 0;
-            background-color: #fff;
+            background-color: #fffbf2;
             /* border: 1px solid #333; */
             border-radius: 0px;
             padding: 10px;
-            height: auto;
+            height: 100%;
         }
 
         nav.open a {
@@ -306,6 +307,8 @@
         <div class="spinner" id="loading-spinner"></div> <!-- Spinner added here -->
         <div id="results"></div>
         <button id="load-more-btn" class="load-more-btn" style="display: none;">تحميل المزيد</button>
+        <br>
+        
         <p id="no-more-books" class="load-more-msg" style="display: none;">ليس هناك المزيد لعرضه</p>
     </section>
 
@@ -347,9 +350,9 @@
                 let output = '';
                 for (let i = currentIndex; i < currentIndex + booksPerPage && i < books.length; i++) {
                     output += '<div class="book">';
-                    output += '<a style="text-decoration: none;" href="view.html?title=' + encodeURIComponent(books[i][0]) + '">';
-                    output += '<h3>' + books[i][0] + '</h3>'; // عنوان الكتاب
-                    output += '<img src="' + books[i][2] + '" alt="غلاف الكتاب">'; // غلاف الكتاب
+                    output += '<a style="text-decoration: none;" href="view.html?title=' + encodeURIComponent(books[i][2]) + '">'; // تعديل الفهرس هنا ليشير إلى العمود B
+                    output += '<h3>' + books[i][0] + '</h3>'; // تعديل الفهرس هنا ليشير إلى العمود B
+                    output += '<img src="' + books[i][1] + '" alt="غلاف الكتاب">'; // تعديل الفهرس هنا ليشير إلى العمود D
                     output += '</a>';
                     output += '<button class="view-book-btn">مراجعتي</button>';
                     output += '</div>';
@@ -371,14 +374,13 @@
             });
 
             $.ajax({
-                url: "https://sheets.googleapis.com/v4/spreadsheets/1eFNyOTc1sjFwoBYA5FzB4f-ecGs0w-COjOZ_mXLWBbo/values/Data!A1:I100?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU",
+                url: "https://sheets.googleapis.com/v4/spreadsheets/1eFNyOTc1sjFwoBYA5FzB4f-ecGs0w-COjOZ_mXLWBbo/values/Data!B2:J100?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU", // تعديل الفهرس هنا ليشير إلى العمود B
                 method: "GET",
                 beforeSend: function() {
                     $('#loading-spinner').show(); // Show spinner before request
                 },
                 success: function(data){
                     books = data.values;
-                    books.shift(); // Remove header row
                     displayBooks();
                 },
                 complete: function() {
@@ -394,10 +396,10 @@
         // عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             const currentYear = new Date().getFullYear(); // السنة الحالية
-            const websiteName = "مراجعة مع أميمة"; // استبدل بالاسم الخاص بموقعك
+            const websiteName = "المراجعة"; // استبدل بالاسم الخاص بموقعك
 
             const footerText = document.getElementById('footer-text');
-            footerText.textContent = `جميع الحقوق محفوظة © ${currentYear} ${websiteName}`;
+            footerText.textContent = `${websiteName} © ${currentYear}`;
         });
     </script>
 </body>
