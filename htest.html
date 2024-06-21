@@ -347,9 +347,9 @@
                 let output = '';
                 for (let i = currentIndex; i < currentIndex + booksPerPage && i < books.length; i++) {
                     output += '<div class="book">';
-                    output += '<a style="text-decoration: none;" href="view.html?title=' + encodeURIComponent(books[i][0]) + '">';
-                    output += '<h3>' + books[i][0] + '</h3>'; // عنوان الكتاب
-                    output += '<img src="' + books[i][1] + '" alt="غلاف الكتاب">'; // غلاف الكتاب
+                    output += '<a style="text-decoration: none;" href="view.html?title=' + encodeURIComponent(books[i][1]) + '">';
+                    output += '<h3>' + books[i][1] + '</h3>'; // عنوان الكتاب
+                    output += '<img src="' + books[i][2] + '" alt="غلاف الكتاب">'; // غلاف الكتاب
                     output += '</a>';
                     output += '<button class="view-book-btn">مراجعتي</button>';
                     output += '</div>';
