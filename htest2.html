@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مراجعة مع أميمة</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Rubik, sans-serif;
+            margin: 0;
+            background-color: #ffb1000d;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        #results-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .book {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        @media (max-width: 991px) {
+            .book {
+                width: calc(33.333% - 20px);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .book {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .book {
+                width: calc(100% - 20px);
+            }
+        }
+
+        .book img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .view-book-btn, .load-more-btn {
+            font-family: Rubik, sans-serif;
+            padding: 5px 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .view-book-btn {
+            width: 50%;
+        }
+
+        .load-more-btn {
+            width: 20%;
+        }
+
+        .load-more-msg {
+            color: #747070;
+        }
+
+        h3 {
+            color: #85640a;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .book:hover {
+            border-color: #e74c3c;
+        }
+
+        .book:hover h3 {
+            color: #e74c3c;
+        }
+
+        .book:hover .view-book-btn {
+            background-color: red;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 0 0 0 20px;
+            z-index: 10;
+        }
+
+        .logo {
+            width: 70px;
+            height: auto;
+            margin-left: 10%;
+            margin-right: 5%;
+            z-index: 8;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .nav-a:hover {
+            color: #85640a;
+        }
+
+        nav.open {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0px;
+            left: 0;
+            right: 0;
+            background-color: #f2ab19;
+            border-radius: 0px;
+            padding: 10px;
+            height: 100%;
+            padding-top: 90px;
+            z-index: 5;
+        }
+
+        nav.open a {
+            color: black;
+        }
+
+        .menu-icon {
+            display: none;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            background-image: url('https://wa022.github.io/2028/menu.png');
+            background-size: cover;
+            z-index: 7;
+        }
+
+        .search-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .search-box input {
+            font-family: Rubik, sans-serif;
+            border-width: 1px;
+            height: 25px;
+            border-radius: 0px 20px 20px 0px;
+            padding-right: 15px;
+        }
+
+        .search-box button {
+            font-family: Rubik, sans-serif;
+            border-width: 1px;
+            height: 29px;
+            width: 29px;
+            border-radius: 20px 0px 0px 20px;
+            text-align: center;
+            background: black;
+        }
+
+        .search-box button:hover {
+            background-color: #ff7a2a;
+            border-width: 0px;
+        }
+
+        @media screen and (max-width: 576px) {
+            header {
+                flex-direction: row-reverse;
+            }
+
+            .logo {
+                margin-left: auto;
+                margin-right: 10px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .search-box {
+                padding: 10px;
+            }
+        }
+
+        @media screen and (min-width: 577px) and (max-width: 768px) {
+            .logo {
+                margin-left: 5%;
+                margin-right: 10%;
+            }
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 992px) {
+            .logo {
+                margin-left: 10%;
+                margin-right: 5%;
+            }
+        }
+
+        @media screen and (min-width: 993px) {
+            .logo {
+                margin-left: 10%;
+                margin-right: 5%;
+            }
+        }
+
+        .box1 {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            color: #000;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-top-color: #e74c3c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()"></div>
+        <img src="https://wa022.github.io/reviewwithoumaima/logoB.png" alt="شعار" class="logo">
+        <nav>
+            <a href="/3/index.html" class="nav-a">الرئيسية</a>
+            <a href="/3/about.html" class="nav-a">من أنا</a>
+            <a href="/3/contact.html" class="nav-a">للتواصل معي</a>
+        </nav>
+    </header>
+    <div class="box1"></div>
+    <div class="search-box">
+        <input type="text" placeholder="ابحث هنا...">
+        <button><img style="vertical-align: middle; height: 13px;" src="https://img.icons8.com/ios-filled/24/ffffff/search.png" alt="بحث"></button>
+    </div>
+    <div class="container">
+        <div id="results-container">
+            <!-- يتم تحميل نتائج الكتب هنا -->
+        </div>
+        <button class="load-more-btn" id="load-more-btn">تحميل المزيد</button>
+        <div class="spinner" id="loading-spinner"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 مراجعة مع أميمة. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        const sheetUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1eFNyOTc1sjFwoBYA5FzB4f-ecGs0w-COjOZ_mXLWBbo/values/Data!B2:J100?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU';
+
+        let bookData = [];
+        let booksPerPage = 6;
+        let currentPage = 1;
+
+        function extractIdFromDriveLink(driveLink) {
+            const regex = /\/d\/(.*?)\//;
+            const match = driveLink.match(regex);
+            return match ? match[1] : '';
+        }
+
+        function fetchBookData() {
+            return $.getJSON(sheetUrl).then(data => {
+                bookData = data.values.map(row => ({
+                    title: row[0],
+                    imageId: extractIdFromDriveLink(row[1]),
+                    author: row[2],
+                    pages: row[3],
+                    genre: row[4],
+                    year: row[5],
+                    rating: row[6],
+                    summary: row[7],
+                    review: row[8]
+                }));
+            });
+        }
+
+        function displayBooks() {
+            const startIndex = (currentPage - 1) * booksPerPage;
+            const endIndex = currentPage * booksPerPage;
+            const booksToDisplay = bookData.slice(startIndex, endIndex);
+
+            const resultsContainer = $('#results-container');
+            booksToDisplay.forEach(book => {
+                const bookElement = `
+                    <div class="book">
+                     <h3>${book.title}</h3>
+         <img src="https://lh3.google.com/u/0/d/${book.imageId}" alt="${book.title}">
+                       
+                        <button class="view-book-btn" onclick="location.href='${book.review}'">عرض المراجعة</button>
+                    </div>
+                `;
+                resultsContainer.append(bookElement);
+            });
+
+            if (endIndex >= bookData.length) {
+                $('#load-more-btn').hide();
+                $('.load-more-msg').show().text('لا توجد المزيد من الكتب.');
+            }
+        }
+
+        function loadMoreBooks() {
+            $('#load-more-btn').hide();
+            $('#loading-spinner').show();
+
+            setTimeout(() => {
+                currentPage++;
+                displayBooks();
+                $('#loading-spinner').hide();
+                if (currentPage * booksPerPage < bookData.length) {
+                    $('#load-more-btn').show();
+                }
+            }, 1000);
+        }
+
+        $(document).ready(function() {
+            fetchBookData().then(() => {
+                displayBooks();
+                $('#load-more-btn').click(loadMoreBooks);
+            });
+        });
+
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
